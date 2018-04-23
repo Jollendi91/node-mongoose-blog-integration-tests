@@ -148,4 +148,39 @@ describe('Blog Post API resource', function() {
                 });
         });
     });
+
+    describe('PUT endpoint', function() {
+
+        it('should update a blog post with the fields sent over', function() {
+            const updatedPost = {
+                title: 'Updated new post title',
+                content: 'This is the new post content, it is probably much shorter than the rest.',
+                author: {
+                    firstName: "Sally",
+                    lastName: "Smith"
+                }
+            }
+
+            return BlogPost
+                .findOne()
+                .then(function(post) {
+                    updatedPost.id = post.id;
+
+                    return chai.request(app)
+                        .put(`/posts/${post.id}`)
+                        .send(updatedPost)
+                })
+                .then(function(res) {
+                    expect(res).to.have.status(204);
+
+                    return BlogPost.findById(updatedPost.id);
+                })
+                .then(function(post) {
+                    expect(post.title).to.equal(updatedPost.title);
+                    expect(post.content).to.equal(updatedPost.content);
+                    expect(post.authorName).to.include(updatedPost.author.firstName);
+                    expect(post.authorName).to.include(updatedPost.author.lastName);
+                });
+        });
+    });
 });
