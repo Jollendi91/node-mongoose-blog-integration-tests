@@ -124,7 +124,7 @@ describe('Blog Post API resource', function() {
         it('should add a new post', function() {
             const newBlogPost = generateBlogPostData();
 
-            chai.request(app)
+           return chai.request(app)
                 .post('/posts')
                 .send(newBlogPost)
                 .then(function(res) {
@@ -180,6 +180,27 @@ describe('Blog Post API resource', function() {
                     expect(post.content).to.equal(updatedPost.content);
                     expect(post.authorName).to.include(updatedPost.author.firstName);
                     expect(post.authorName).to.include(updatedPost.author.lastName);
+                });
+        });
+    });
+
+    describe('DELETE endpoint', function() {
+
+        it('should remove a blog post by id', function() {
+            let post;
+
+            return BlogPost
+                .findOne()
+                .then(function(_post) {
+                    post = _post;
+                    return chai.request(app).delete(`/posts/${post.id}`);
+                })
+                .then(function(res) {
+                    expect(res).to.have.status(204);
+                    return BlogPost.findById(post.id);
+                })
+                .then(function(_post) {
+                    expect(_post).to.be.null;
                 });
         });
     });
