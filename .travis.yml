@@ -1,4 +1,11 @@
 language: node_js
 node_js: node
 services:
-  - mongodb 
+- mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: jLefW/3QAAH3MUlUR28H8SHxFnVisj1/RfCqlw8HRmWww+w1Baqy43Az0vrvcqzIEl65GMN8/TVBGKp9f275e2lrJcvdQ/m5nAOPCSEzrk40gak4gM0ZcDroAWGg91pGvMqMQfND568q4VQkCDH8D8YtnOxpPAgywTQPVGZscxgmxj20rYMCbWFAmuKNSf+OgQ6Hw2/rFuFaSwLwghtskF6vd+CeRRZNOydXyl1M1H6X7Qh3R2WHZnS1jbdUBgSpGc9p6hzoLT0S/N/YFsgb7c6hiQxLI4VZngmdAozIFLIsImEH4bS9KtpOW/ECx9wd/auXUtoIpV714BhprnJUVJppTdwLemwOdF2u8Oe4Pl0WFCyqOS/YMvzkmm9zSgdA1pdOw+wQ8swPaQQZYDMGQxL/UUNhHPxyZJGB2o+fhVvjy2PpIfBplMcHwcRvfldUCfK6TP6Y6miTKvNozybL4hHKW7KOAu2avRM9ZKDsGemrmVtqUS60soo9TlFpZd4G6tQ2XnoDnjBJr+lmuk+SZPz47EL6vhjVeXyirw0YGqHDTE14khTL9BByRTMK167XCzpmTLEV6kMaOtiCRCU+koCJs7FUtYVs/y0Kxzr20M+wbJ8RlhLNRN7wNQB3BhnFvbDpWE1VijssIqoaNX+C7Ff6fq86b4OgVxetcXLMnNw=
+  app: boiling-beyond-37206
+  on:
+    repo: Jollendi91/node-mongoose-blog-integration-tests
